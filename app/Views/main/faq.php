@@ -15,7 +15,7 @@
                     $show = $data == 0 ? "show" : "";
                     echo '
                 
-                <li data-aos="fade-up" data-aos-delay="'.$data.'00">
+                <li data-aos="fade-up" data-aos-delay="' . $data . '00">
                     <i class="bx bx-help-circle icon-help"></i> 
                         <a data-bs-toggle="collapse" class="' . $collapse . '"  data-bs-target="#faq-list-' . $data . '">' . $val->title . '
                         <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
@@ -27,7 +27,7 @@
                 </li>
             ';
                 }
-                ?> 
+                ?>
             </ul>
 
         </div>

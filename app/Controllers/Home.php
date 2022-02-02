@@ -17,7 +17,7 @@ class Home extends BaseController
     {
 
         $faqs = new Faq();
-        $paginate =  $faqs->paginate(20,'fags');
+        $paginate =  $faqs->paginate(5,'fags');
         $pager =  $faqs->pager;
         $data = [
             'title' => ucfirst("smartinvestor"),
