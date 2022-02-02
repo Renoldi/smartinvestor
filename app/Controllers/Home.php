@@ -17,13 +17,14 @@ class Home extends BaseController
     {
 
         $faqs = new Faq();
-        $paginate =  $faqs->paginate(1);
+        $paginate =  $faqs->paginate(2,'fags');
         $pager =  $faqs->pager;
         $data = [
             'title' => ucfirst("smartinvestor"),
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
             'pager' => $pager,
             'paginate' => $paginate,
+            'page' => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
             'main' => [
                 "about" => "main/about",
                 "features" => "main/features",
