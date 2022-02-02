@@ -63,13 +63,13 @@
       <div class="copyright">
         &copy; Copyright <strong><span><?= $domain?></span></strong>. All Rights Reserved
       </div>
-      <div class="credits">
+      <!-- <div class="credits"> -->
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div> -->
     </div>
   </footer><!-- End Footer -->
 
@@ -77,15 +77,15 @@
   <div id="preloader"></div>
 
   <!-- vendor JS Files -->
-  <script src="<?= base_url().'/assets/vendor/purecounter/purecounter.js'?>"></script>
-  <script src="<?= base_url().'/assets/vendor/aos/aos.js'?>"></script>
-  <script src="<?= base_url().'/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'?>"></script>
-  <script src="<?= base_url().'/assets/vendor/glightbox/js/glightbox.min.js'?>"></script>
-  <script src="<?= base_url().'/assets/vendor/swiper/swiper-bundle.min.js'?>"></script>
-  <script src="<?= base_url().'/assets/vendor/php-email-form/validate.js'?>"></script>
+  <script src="<?= base_url('/assets/vendor/purecounter/purecounter.js')?>"></script>
+  <script src="<?= base_url('/assets/vendor/aos/aos.js')?>"></script>
+  <script src="<?= base_url('/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
+  <script src="<?= base_url('/assets/vendor/glightbox/js/glightbox.min.js')?>"></script>
+  <script src="<?= base_url('/assets/vendor/swiper/swiper-bundle.min.js')?>"></script>
+  <script src="<?= base_url('/assets/vendor/php-email-form/validate.js')?>"></script>
 
   <!-- Template Main JS File -->
-  <script src="<?= base_url().'/assets/js/main.js'?>"></script>
+  <script src="<?= base_url('/assets/js/main.js')?>"></script>
 
 </body>
 
