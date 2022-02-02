@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 // use App\Models\Faq;
 
+use App\Models\Contact;
 use App\Models\Faq;
 use CodeIgniter\Files\File;
 use PhpParser\Node\Stmt\Echo_;
@@ -17,6 +18,7 @@ class Home extends BaseController
     {
 
         $faqs = new Faq();
+        $contact = new Contact();
         $paginate =  $faqs->paginate(10,'fags');
         $pager =  $faqs->pager;
         $data = [
@@ -24,6 +26,7 @@ class Home extends BaseController
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
             'pager' => $pager,
             'paginate' => $paginate,
+            'contact'=> $contact->find(1),
             'page' => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
             'main' => [
                 "about" => "main/about",
