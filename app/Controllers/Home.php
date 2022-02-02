@@ -2,27 +2,42 @@
 
 namespace App\Controllers;
 
+// use \App\Models\Faq;
+
+// use App\Models\Faq;
+
+use App\Models\Faq;
 use CodeIgniter\Files\File;
+use PhpParser\Node\Stmt\Echo_;
 
 class Home extends BaseController
 {
 
     public function index()
     {
-        $data['title'] = ucfirst("smartinvestor");
-        $data['domain'] = ucfirst($_SERVER['SERVER_NAME']);
-        $data['main'] = [
-            "about" => "main/about",
-            "features" => "main/features",
-            "counts" => "main/counts",
-            "details" => "main/details",
-            "gallery" => "main/gallery",
-            "testimonials" => "main/testimonials",
-            "team" => "main/team",
-            "pricing" => "main/pricing",
-            "faq" => "main/faq",
-            "contact" => "main/contact",
+
+        $faqs = new Faq();
+        $paginate =  $faqs->paginate(1);
+        $pager =  $faqs->pager;
+        $data = [
+            'title' => ucfirst("smartinvestor"),
+            'domain' => ucfirst($_SERVER['SERVER_NAME']),
+            'pager' => $pager,
+            'paginate' => $paginate,
+            'main' => [
+                "about" => "main/about",
+                "features" => "main/features",
+                "counts" => "main/counts",
+                "details" => "main/details",
+                "gallery" => "main/gallery",
+                "testimonials" => "main/testimonials",
+                "team" => "main/team",
+                "pricing" => "main/pricing",
+                "faq" => "main/faq",
+                "contact" => "main/contact",
+            ]
         ];
+
         return view('template', $data);
     }
     public function uploadimga()

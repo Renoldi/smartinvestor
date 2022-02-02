@@ -58,4 +58,5 @@
         </div>
 
     </div>
+    <?= $pager->links() ?>
 </section><!-- End F.A.Q Section -->
