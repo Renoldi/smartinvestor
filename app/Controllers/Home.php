@@ -101,6 +101,7 @@ class Home extends BaseController
             'upload' => [
                 'uploaded[upload]',
                 'mime_in[upload,image/jpg,image/jpeg,image/png]',
+                // '|is_image[upload]',
                 'max_size[upload,1024]',
             ],
         ]);
