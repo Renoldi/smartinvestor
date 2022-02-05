@@ -16,4 +16,6 @@ class Menu extends Entity
         'active' => null,
         'url' => null,
     ];
+
+    
 }
