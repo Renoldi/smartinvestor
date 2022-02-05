@@ -8,6 +8,7 @@ namespace App\Controllers;
 
 use App\Models\Contact;
 use App\Models\Faq;
+use App\Models\Menu;
 use CodeIgniter\Files\File;
 use PhpParser\Node\Stmt\Echo_;
 
@@ -19,14 +20,16 @@ class Home extends BaseController
 
         $faqs = new Faq();
         $contact = new Contact();
-        $paginate =  $faqs->paginate(10,'fags');
+        $menu = new Menu();
+        $paginate =  $faqs->paginate(10, 'fags');
         $pager =  $faqs->pager;
         $data = [
             'title' => ucfirst("smartinvestor"),
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
             'pager' => $pager,
             'paginate' => $paginate,
-            'contact'=> $contact->find(1),
+            // 'menu' => $menu->getMenu(),
+            'contact' => $contact->find(1),
             'page' => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
             'main' => [
                 "about" => "main/about",
@@ -42,11 +45,20 @@ class Home extends BaseController
             ]
         ];
 
+        echo '<pre>';
+        var_dump($menu->find(1));
+        echo '</pre>';
+        exit;
         return view('template', $data);
     }
     public function uploadimga()
     {
         return view('upload_form');
+    }
+
+    public function uploadCkeditor()
+    {
+        return view('ckeditor');
     }
 
     public function upload()
@@ -81,6 +93,37 @@ class Home extends BaseController
 
             return view('upload_form', $data);
         }
+    }
+
+    public function uploadImages()
+    {
+        $validated = $this->validate([
+            'upload' => [
+                'uploaded[upload]',
+                'mime_in[upload,image/jpg,image/jpeg,image/png]',
+                'max_size[upload,1024]',
+            ],
+        ]);
+
+        $file = $this->request->getFile('upload');
+        if ($validated) {
+            $fileName = $file->getRandomName();
+            $writePath = './upload/';
+            $file->move($writePath, $fileName);
+            $data = [
+                "uploaded" => true,
+                "url" => base_url($writePath . $fileName),
+            ];
+        } else {
+            $data = [
+                "uploaded" => false,
+                "error" => [
+                    "messsages" => $file
+                ],
+            ];
+        }
+
+        return $this->response->setJSON($data);
     }
 
     public function AutoTrade()
