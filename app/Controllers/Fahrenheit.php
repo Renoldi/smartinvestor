@@ -16,10 +16,13 @@ class Fahrenheit extends BaseController
         $menu = new Menu();
         $paginate =  $faqs->paginate(10, 'fags');
         $pager =  $faqs->pager;
+        $quote = ucwords("build your financial freedom with");
         $data = [
             'title' => ucfirst("smartinvestor"),
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
             'pager' => $pager,
+            'quote' => $quote,
+
             'paginate' => $paginate,
             'menu' => $menu->getMenu(),
             'contact' => $contact->find(1),

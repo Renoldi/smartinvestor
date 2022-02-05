@@ -14,15 +14,16 @@
           $idMenu = '';
           foreach ($menu as $menus => $key) {
             $active = $menus == 0 ? 'active' : '';
-            $parent = $key['parent'];
+            $parents = $key['parent'];
+            $childs = $key['child'];
             if (count($key['child']) > 0) {
-              echo '<li class="dropdown"><a href="#"><span>AutoTrade</span> <i class="bi bi-chevron-down"></i></a> <ul>';
-              foreach ($key['child'] as $child) {
+              echo '<li class="dropdown"><a href="#"><span>' . ucfirst($parents->menu) . '</span> <i class="bi bi-chevron-down"></i></a> <ul>';
+              foreach ($childs as $child) {
                 echo '<li><a href="' . site_url($child->url) . '">' . ucfirst($child->menu) . '</a></li>';
               }
               echo ' </ul></li>';
             } else {
-              echo '<li><a class="nav-link scrollto ' . $active . '" href="' . site_url($parent->url) . '">' . ucfirst($parent->menu) . '</a></li>';
+              echo '<li><a class="nav-link scrollto ' . $active . '" href="' . site_url($parents->url) . '">' . ucfirst($parents->menu) . '</a></li>';
             }
           }
           ?>

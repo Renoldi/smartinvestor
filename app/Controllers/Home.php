@@ -19,12 +19,14 @@ class Home extends BaseController
         $menu = new Menu();
         $paginate =  $faqs->paginate(10, 'fags');
         $pager =  $faqs->pager;
+        $quote = ucwords("build your financial freedom with");
         $data = [
             'title' => ucfirst("smartinvestor"),
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
             'pager' => $pager,
             'paginate' => $paginate,
             'menu' => $menu->getMenu(),
+            'quote'=>$quote,
             'contact' => $contact->find(1),
             'page' => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
             'main' => [

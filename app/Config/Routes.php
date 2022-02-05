@@ -32,10 +32,11 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('/AutoTrade', 'AutoTrade::index');
-$routes->get('/Fahrenheit', 'Fahrenheit::index');
-$routes->get('/RoyalQ', 'RoyalQ::index');
-$routes->get('/Sminet89', 'Sminet89::index');
+$routes->get('/autotrade/(:any)', 'AutoTrade::index');
+$routes->get('/dna/(:any)', 'Dna::index');
+$routes->get('/fahrenheit', 'Fahrenheit::index');
+$routes->get('/royalq', 'RoyalQ::index');
+$routes->get('/sminet89', 'Sminet89::index');
 
 /*
  * --------------------------------------------------------------------
