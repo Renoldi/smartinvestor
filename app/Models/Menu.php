@@ -45,15 +45,33 @@ class Menu extends Model
 
     public function getMenu()
     {
-        return $this->orderBy('submenu', "sort" )
-            ->findAll();
-
+        $datas = $this->getBySubmenu(0);
+        $result = [];
+        foreach ($datas as $data => $value) {
+            $result[$data]['parent'] = $value;
+            $subs = $this->getBySubmenu($value->id);
+            if (count($subs) > 0) {
+                foreach ($subs as $sub => $key) {
+                    $result[$data]['child'][] = $key;
+                }
+            } else {
+                $result[$data]['child'] = [];
+            }
+        }
         // echo "<pre>";
-        // print_r($this->like('menu', "crypto")
-        //     ->findAll());
-        // echo "</pre>";
+        // print_r($result);
         // exit;
-        // ->orderBy('submenu', 'asc')
-        // ->findAll();
+        return $result;
+    }
+
+    public function getById($id)
+    {
+        return $this->find($id);
+    }
+
+    public function getBySubmenu($id)
+    {
+        return $this->where('submenu', $id)
+            ->findAll();
     }
 }

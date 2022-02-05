@@ -2,10 +2,6 @@
 
 namespace App\Controllers;
 
-// use \App\Models\Faq;
-
-// use App\Models\Faq;
-
 use App\Models\Contact;
 use App\Models\Faq;
 use App\Models\Menu;

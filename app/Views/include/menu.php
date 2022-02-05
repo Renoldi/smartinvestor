@@ -10,23 +10,24 @@
 
      <nav id="navbar" class="navbar">
        <ul>
-         <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-         <li class="dropdown"><a href="#"><span>AutoTrade</span> <i class="bi bi-chevron-down"></i></a>
-           <ul>
-             <li><a href="#">Gold</a></li>
-             <li><a href="#">Crypto</a></li>
-           </ul>
-         </li>
-         <li class="dropdown"><a href="#"><span>Dna</span> <i class="bi bi-chevron-down"></i></a>
-           <ul>
-             <li><a href="#">Pro</a></li>
-             <li><a href="#">Crypto</a></li>
-           </ul>
-         </li>
-         <li><a class="nav-link scrollto" href="#gallery">Fahrenheit</a></li>
-         <li><a class="nav-link scrollto" href="#team">Royal Q</a></li>
-         <li><a class="nav-link scrollto" href="#pricing">SMI (NET89)</a></li> 
-         <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+
+
+         <?php
+          $idMenu = '';
+          foreach ($menu as $menus => $key) {
+            $active = $menus == 0 ? 'active' : '';
+            $parent = $key['parent'];
+            if (count($key['child']) > 0) {
+              echo '<li class="dropdown"><a href="#"><span>AutoTrade</span> <i class="bi bi-chevron-down"></i></a> <ul>';
+              foreach ($key['child'] as $child) {
+                echo '<li><a href="' . site_url($child->url) . '">' . ucfirst($child->menu) . '</a></li>';
+              }
+              echo ' </ul></li>';
+            } else {
+              echo '<li><a class="nav-link scrollto ' . $active . '" href="' . site_url($parent->url) . '">' . ucfirst($parent->menu) . '</a></li>';
+            }
+          }
+          ?>
        </ul>
        <i class="bi bi-list mobile-nav-toggle"></i>
      </nav><!-- .navbar -->
