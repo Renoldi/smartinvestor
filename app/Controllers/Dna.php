@@ -18,7 +18,7 @@ class Dna extends BaseController
         $quote = ucwords("build your financial freedom with");
         $pager =  $faqs->pager;
         $data = [
-            'title' => ucfirst("smartinvestor"),
+            'title' => ucfirst("smart investor"),
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
             'pager' => $pager,
             'paginate' => $paginate,

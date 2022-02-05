@@ -11,13 +11,16 @@
      <nav id="navbar" class="navbar">
        <ul>
          <?php
+          $request = service('request');
+          $uri = $request->uri;
+          $something = $uri->getSegment(1);
           $idMenu = '';
           foreach ($menu as $menus => $key) {
-            $active = $menus == 0 ? 'active' : '';
             $parents = $key['parent'];
+            $active = $parents->url == $something ? 'active' : '';
             $childs = $key['child'];
             if (count($key['child']) > 0) {
-              echo '<li class="dropdown"><a href="#"><span>' . ucfirst($parents->menu) . '</span> <i class="bi bi-chevron-down"></i></a> <ul>';
+              echo '<li class="dropdown"><a href="#" class="' . $active . '"><span>' . ucfirst($parents->menu) . '</span> <i class="bi bi-chevron-down"></i></a> <ul>';
               foreach ($childs as $child) {
                 echo '<li><a href="' . site_url($child->url) . '">' . ucfirst($child->menu) . '</a></li>';
               }
