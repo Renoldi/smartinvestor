@@ -42,10 +42,18 @@ class Menu extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-    
-    // public function getMenu()
-    // {
-    //     $builder = $this->builder();
-    //     return $builder->get();
-    // }
+
+    public function getMenu()
+    {
+        return $this->orderBy('submenu', "sort" )
+            ->findAll();
+
+        // echo "<pre>";
+        // print_r($this->like('menu', "crypto")
+        //     ->findAll());
+        // echo "</pre>";
+        // exit;
+        // ->orderBy('submenu', 'asc')
+        // ->findAll();
+    }
 }

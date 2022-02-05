@@ -28,7 +28,7 @@ class Home extends BaseController
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
             'pager' => $pager,
             'paginate' => $paginate,
-            // 'menu' => $menu->getMenu(),
+            'menu' => $menu->getMenu(),
             'contact' => $contact->find(1),
             'page' => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
             'main' => [
@@ -44,11 +44,6 @@ class Home extends BaseController
                 "contact" => "main/contact",
             ]
         ];
-
-        echo '<pre>';
-        var_dump($menu->find(1));
-        echo '</pre>';
-        exit;
         return view('template', $data);
     }
     public function uploadimga()
