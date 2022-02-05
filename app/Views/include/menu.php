@@ -10,8 +10,6 @@
 
      <nav id="navbar" class="navbar">
        <ul>
-
-
          <?php
           $idMenu = '';
           foreach ($menu as $menus => $key) {
