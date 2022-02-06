@@ -6,7 +6,7 @@
 
          <div class="col-lg-4 col-md-6">
            <div class="footer-info">
-             <h3><?= $domain ?></h3>
+             <h3><?= $smartInvestor ?></h3>
              <p class="pb-3"><em>Qui repudiandae et eum dolores alias sed ea. Qui suscipit veniam excepturi quod.</em></p>
              <p>
                <?= $contact->addres ?> <br>
