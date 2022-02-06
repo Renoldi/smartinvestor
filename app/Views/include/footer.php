@@ -29,28 +29,19 @@
              <?php
               foreach ($menu as $menus => $key) {
                 $parents = $key['parent'];
-                // $active = $parents->url == $something ? 'active' : '';
                 $childs = $key['child'];
                 if (count($childs) > 0) {
-                  // echo '<li class="dropdown"><a href="#" class="' . $active . '"><span>' . ucfirst($parents->menu) . '</span> <i class="bi bi-chevron-down"></i></a> <ul>';
                   foreach ($childs as $child) {
-                    // echo '<li><a href="' . site_url($child->url) . '">' . ucfirst($child->menu) . '</a></li>';
-                    echo '<li><i class="bx bx-chevron-right"></i> <a href="' . site_url($child->url) . '">'.ucfirst($parents->menu).'/'.$child->menu.'</a></li>';
+                    echo '<li><i class="bx bx-chevron-right"></i> <a href="' . site_url($child->url) . '">' . ucfirst($parents->menu) . '/' . $child->menu . '</a></li>';
                   }
                   // echo ' </ul></li>';
                 } else {
-                  echo '<li><i class="bx bx-chevron-right"></i> <a href="' . site_url($parents->url) . '">'.ucfirst($parents->menu).'</a></li>';
+                  echo '<li><i class="bx bx-chevron-right"></i> <a href="' . site_url($parents->url) . '">' . ucfirst($parents->menu) . '</a></li>';
                 }
               }
               ?>
            </ul>
-           <!-- <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul> -->
+
          </div>
 
          <!-- <div class="col-lg-2 col-md-6 footer-links">
@@ -66,7 +57,7 @@
 
          <div class="col-lg-4 col-md-6 footer-newsletter">
            <h4>Our Newsletter</h4>
-           <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+           <p><?= $quote . ' ' . $smartInvestor ?></p>
            <form action="" method="post">
              <input type="email" name="email"><input type="submit" value="Subscribe">
            </form>

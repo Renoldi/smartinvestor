@@ -23,7 +23,11 @@ class RoyalQ extends BaseController
         $paginate =  $faqs->where('menu', $idMenu[0]->id)->paginate(10, 'fags');
         $pager =  $faqs->where('menu', $idMenu[0]->id)->pager;
         $quote = ucwords("build your financial freedom with");
+        $smartInvestor = ucwords("Smart Investor");
+
         $data = [
+            'smartInvestor' => $smartInvestor,
+
             'title' => ucfirst("smartinvestor"),
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
             'pager' => $pager,

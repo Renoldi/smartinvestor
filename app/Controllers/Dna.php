@@ -23,7 +23,11 @@ class Dna extends BaseController
         $paginate =  $faqs->where('menu', $idMenu[0]->id)->paginate(10, 'fags');
         $quote = ucwords("build your financial freedom with");
         $pager =  $faqs->where('menu', $idMenu[0]->id)->pager;
+        $smartInvestor = ucwords("Smart Investor");
+
         $data = [
+            'smartInvestor' => $smartInvestor,
+
             'title' => ucfirst("smart investor"),
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
             'pager' => $pager,
