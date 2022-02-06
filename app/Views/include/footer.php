@@ -16,7 +16,7 @@
               </p>
               <div class="social-links mt-3">
                 <a href="# <?= $contact->facebook?>" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="# <?= $contact->instagram?>" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <!-- <a href="# <?= $contact->instagram?>" class="instagram"><i class="bx bxl-instagram"></i></a> -->
                 <a href="# <?= $contact->telegram?>" class="telegram"><i class="bx bxl-telegram"></i></a>
                 <a href="https://api.whatsapp.com/send/?phone=<?= $contact->whatsapp?>&text&app_absent=0 " class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
               </div>
