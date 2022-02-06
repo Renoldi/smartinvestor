@@ -14,11 +14,17 @@ class Home extends BaseController
     public function index()
     {
 
+        $request = \Config\Services::request();
+        $controllerName = $request->uri->getSegment(1);
+        $getMenu = new Menu();
+
+        $idMenu = $getMenu->like('url', $controllerName, 'both')->findAll();
+
         $faqs = new Faq();
         $contact = new Contact();
         $menu = new Menu();
-        $paginate =  $faqs->paginate(10, 'fags');
-        $pager =  $faqs->pager;
+        $paginate =  $faqs->where('menu', $idMenu[0]->id)->paginate(10, 'fags');
+        $pager =  $faqs->where('menu', $idMenu[0]->id)->pager;
         $quote = ucwords("build your financial freedom with");
         $data = [
             'title' => ucfirst("smartinvestor"),

@@ -11,12 +11,18 @@ class AutoTrade extends BaseController
 {
     public function index()
     {
+        $request = \Config\Services::request();
+        $controllerName = $request->uri->getSegment(1);
+        $getMenu = new Menu();
+
+        $idMenu = $getMenu->like('url', $controllerName, 'both')->findAll();
+        
         $faqs = new Faq();
         $contact = new Contact();
         $menu = new Menu();
-        $paginate =  $faqs->paginate(10, 'fags');
+        $paginate =  $faqs->where('menu', $idMenu[0]->id)->paginate(10, 'fags');
         $quote = ucwords("build your financial freedom with");
-        $pager =  $faqs->pager;
+        $pager =  $faqs->where('menu', $idMenu[0]->id)->pager;
         $data = [
             'title' => ucfirst("smartinvestor"),
             'domain' => ucfirst($_SERVER['SERVER_NAME']),
