@@ -14,8 +14,8 @@ class Fahrenheit extends BaseController
         $faqs = new Faq();
         $contact = new Contact();
         $menu = new Menu();
-        $paginate =  $faqs->paginate(10, 'fags');
-        $pager =  $faqs->pager;
+        $paginate =  $faqs->where('menu',4)->paginate(10, 'fags');
+        $pager =  $faqs->where('menu',4)->pager;
         $quote = ucwords("build your financial freedom with");
         $data = [
             'title' => ucfirst("smartinvestor"),
