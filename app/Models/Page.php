@@ -46,4 +46,36 @@ class Page extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getPage($page, $where)
+
+    {
+        $datas = $this->getDistinct($page, $where);
+
+        $result = [];
+        foreach ($datas as $data => $value) {
+            $result[$data]  = $value;
+            // $subs = $this->getBySubmenu($value->id);
+            // if (count($subs) > 0) {
+            //     foreach ($subs as $sub => $key) {
+            //         $result[$data][] = $key;
+            //     }
+            // } else {
+            //     $result[$data]  = [];
+            // }
+        }
+
+        return $result;
+    }
+
+    public function getDistinct($page, $where)
+    {
+        return $this->distinct()->select($page)->where('menu', $where)->findAll();
+    }
+
+    public function getBySubmenu($section)
+    {
+        return $this->where('section', $section)
+            ->findAll();
+    }
 }
