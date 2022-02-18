@@ -54,17 +54,15 @@ class Page extends Model
 
         $result = [];
         foreach ($datas as $data => $value) {
-            $result[$data]  = $value;
-            // $subs = $this->getBySubmenu($value->id);
-            // if (count($subs) > 0) {
-            //     foreach ($subs as $sub => $key) {
-            //         $result[$data][] = $key;
-            //     }
-            // } else {
-            //     $result[$data]  = [];
-            // }
+            $subs = $this->getBySubmenu($value->section);
+            if (count($subs) > 0) {
+                foreach ($subs as $sub => $key) {
+                    $result[ $value->section][] = $key;
+                }
+            } else {
+                $result[ $value->section]  = [];
+            }
         }
-
         return $result;
     }
 
