@@ -11,13 +11,15 @@ class Contact extends Entity
     protected $casts   = [];
     protected $attributes = [
         'name' => null,
-        'address' => null,
-        'phone' => null,
-        'whatsapp' => null,
-        'facebook' => null,
-        'telegram' => null,
-        'instagram' => null,
-        'password' => null,
+        // 'address' => null,
+        // 'phone' => null,
+        // 'whatsapp' => null,
+        // 'facebook' => null,
+        // 'telegram' => null,
+        // 'instagram' => null,
+        // 'password' => null,
         'email' => null,
+        'message' => null,
+        'subject' => null,
     ];
 }

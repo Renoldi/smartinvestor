@@ -2,48 +2,36 @@
 
 namespace App\Models;
 
-use App\Entities\Contact as EntitiesContact;
+use App\Entities\Page as EntitiesPage;
 use CodeIgniter\Model;
 
-class Contact extends Model
+class Page extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'contacts';
+    protected $table            = 'pages';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       =  EntitiesContact::class;
+    protected $returnType       = EntitiesPage::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-
     protected $allowedFields    = [
-        'name',
-        // 'address',
-        // 'phone',
-        // 'whatsapp',
-        // 'facebook',
-        // 'telegram',
-        // 'instagram',
-        // 'password',
-        'email', 
-        'message',
-        'subject',
+        'menu',
+        'display',
+        'decs',
+        'image',
+        'active',
     ];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [
-        'name'     => 'required|alpha_numeric_space|min_length[3]',
-        'email'        => 'required|valid_email|is_unique[contacts.email]',
-        'message'     => 'required|alpha_numeric_space|min_length[3]',
-        'message' => 'required|alpha_numeric_space|min_length[3]',
-    ];
+    protected $validationRules      = [];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

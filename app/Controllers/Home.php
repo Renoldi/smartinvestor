@@ -2,11 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Entities\Contact as EntitiesContact;
 use App\Models\Contact;
 use App\Models\Faq;
 use App\Models\Menu;
 use CodeIgniter\Files\File;
 use PhpParser\Node\Stmt\Echo_;
+use CodeIgniter\API\ResponseTrait;
+
+
 
 class Home extends BaseController
 {
@@ -131,5 +135,25 @@ class Home extends BaseController
     public function AutoTrade()
     {
         echo "AutoTrade";
+    }
+
+    use ResponseTrait;
+
+    public function registerContact()
+    {
+
+        $data = $this->request->getPost();
+        $entity =  new EntitiesContact();
+        $entity->fill($data);
+        $userModel = new Contact();
+        // if (!$userModel->save($entity)) {
+        //     $data = [
+        //         $userModel->errors(),
+        //     ];
+        //     return $this->respondCreated($data);
+        //     // return view('template', $data);
+        // } else {
+            return $this->respondCreated($entity);
+        // }
     }
 }
