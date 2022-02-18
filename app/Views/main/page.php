@@ -7,10 +7,7 @@ $length = count($pages);
 $show = '';
 foreach ($pages as $key => $page) {
     $container = "";
-
-
     foreach ($page as $section) {
-
         if ($section->display == "all") {
             if ($x % 2) {
                 $container .= '
@@ -19,7 +16,7 @@ foreach ($pages as $key => $page) {
             </div>
             <div class="col-md-8 pt-4" data-aos="fade-up">
             ' .  $section->decs . '
-            </div>';
+            </div><div class="col-md-12 " ></div>';
             } else {
                 $container .=
                     '<div class="col-md-4 order-1 order-md-2" data-aos="fade-left">
@@ -27,21 +24,20 @@ foreach ($pages as $key => $page) {
             </div>
             <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
             ' .  $section->decs . '
-            </div>
+            </div><div class="col-md-12 " ></div>
         ';
             }
         } else if ($section->display == "img") {
             $container .=
                 '<div class="col-md-12" data-aos="fade-left">
             <img src="' . base_url("assets/img/" . $section->image) . '" class="img-fluid" alt="">
-        </div>';
+        </div><div class="col-md-12 " ></div>';
         } else {
             $container =
                 ' <div class="col-md-12 " data-aos="fade-up">
             ' .  $section->decs . '
-        </div>';
+            </div><div class="col-md-12 " ></div>';
         }
-
         $x++;
     }
     $show .=
