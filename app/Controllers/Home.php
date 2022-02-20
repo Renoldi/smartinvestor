@@ -68,14 +68,15 @@ class Home extends BaseController
 
     public function upload()
     {
+         
         $validationRule = [
             'userfile' => [
                 'label' => 'Image File',
                 'rules' => 'uploaded[userfile]'
                     . '|is_image[userfile]'
                     . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
-                    . '|max_size[userfile,100]'
-                    . '|max_dims[userfile,1024,768]',
+                    . '|max_size[userfile,1024]'
+                    // . '|max_dims[userfile,1024,768]',
             ],
         ];
         if (!$this->validate($validationRule)) {
@@ -90,9 +91,9 @@ class Home extends BaseController
             $newName = $img->getRandomName();
             $img->move('assets/uploads/', $newName);
 
-            $data = ['uploaded_flleinfo' => new File($img)];
+            $data = ['uploaded_flleinfo' => ""];
 
-            return view('upload_success', $data);
+            return view('upload_success');
         } else {
             $data = ['errors' => 'The file has already been moved.'];
 

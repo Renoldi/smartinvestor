@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Upload Form</title>
 </head>
+
 <body>
 
-<?php foreach ($errors as $error): ?>
-    <li><?= esc($error) ?></li>
-<?php endforeach ?>
+    <?= session()->getFlashdata('error') ?>
+    <?= service('validation')->listErrors() ?>
 
-<?= form_open_multipart('home/upload') ?>
+    <?= form_open_multipart('home/upload') ?>
+    
+    <input type="file" name="userfile" size="20" />
 
-<input type="file" name="userfile" size="20" />
+    <br /><br />
 
-<br /><br />
+    <input type="submit" value="upload" />
 
-<input type="submit" value="upload" />
+    </form>
 
-</form>
+
+
+    <!-- <form action=" " method="post" enctype="multipart/form-data">
+       
+        <input type="file" name="userfile" /> 
+        <input type="submit" name="submit" value="Create news item" />
+    </form>   -->
 
 </body>
+
 </html>
