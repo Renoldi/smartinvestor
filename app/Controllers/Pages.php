@@ -13,6 +13,8 @@ class Pages extends BaseController
 
     public function uploadImages()
     {
+        header("Location: http://example.com");
+        die();
         // $validated = $this->validate([
         //     'upload' => [
         //         'uploaded[upload]',
@@ -22,28 +24,23 @@ class Pages extends BaseController
         // ]);
 
         // $file = $this->request->getFile('upload');
-        // // if ($validated) {
-        // //     $fileName = $file->getRandomName();
-        // //     $writePath = './upload/';
-        // //     $file->move($writePath, $fileName);
-        // //     $data = [
-        // //         "uploaded" => true,
-        // //         "url" => base_url($writePath . $fileName),
-        // //     ];
-        // // } else {
+        // if ($validated) {
+        //     $fileName = $file->getRandomName();
+        //     $writePath = './upload/';
+        //     $file->move($writePath, $fileName);
+        //     $data = [
+        //         "uploaded" => true,
+        //         "url" => base_url($writePath . $fileName),
+        //     ];
+        // } else {
         //     $data = [
         //         "uploaded" => false,
         //         "error" => [
         //             "messsages" => $file
         //         ],
         //     ];
-        // // }
+        // }
         // return $this->response->setJSON($data);
-        var_dump($this->input->post());
-        /*--OR---*/
-        var_dump($_REQUEST);
-         /*--OR---*/
-        print_r($this->input->post());
-        die;
+        
     }
 }
