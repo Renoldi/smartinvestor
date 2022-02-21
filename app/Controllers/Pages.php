@@ -39,22 +39,14 @@ class Pages extends BaseController
                 'rules' => 'uploaded[image]'
                     . '|is_image[image]'
                     . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
-                    . '|max_size[image,1024]'
             ],
-        ]);
 
-        if ($file->getName() != "") {
-            if ($validated) {
-                $fileName = $file->getRandomName();
-                $writePath = './upload/';
-                $file->move($writePath, $fileName);
-                $entity->image = base_url($writePath . $fileName);
-            } else {
-                $data["validation"] =  $this->validator;
-                return view('pages', $data);
-            }
-        } else
-            $entity->image = "";
+        ]);
+        if ($validated) {
+            $fileName = $file->getRandomName();
+            $writePath = './upload/';
+            $file->move($writePath, $fileName);
+        }
 
         $entity->fill($post);
         if (array_key_exists("active", $post)) {
@@ -63,11 +55,29 @@ class Pages extends BaseController
             $entity->active =  0;
         }
 
-        if (!$pageModel->save($entity)) {
-            $data["validation"] =   $pageModel->errors();
-            return view('pages', $data);
+        if ($file->getName() != "") {
+            if ($validated) {
+                $entity->image = $file->getRandomName();
+                $writePath = './upload/';
+                $file->move($writePath, $fileName);
+                if (!$pageModel->save($entity)) {
+                    $data["validation"] =   $pageModel->errors();
+                    return view('pages', $data);
+                } else {
+                    $this->response->redirect(base_url("pages"));
+                }
+            } else {
+                $data["validation"] =   $pageModel->errors();
+                return view('pages', $data);
+            }
         } else {
-            $this->response->redirect(base_url("pages"));
+
+            if (!$pageModel->save($entity)) {
+                $data["validation"] =   $pageModel->errors();
+                return view('pages', $data);
+            } else {
+                $this->response->redirect(base_url("pages"));
+            }
         }
     }
 

@@ -38,13 +38,13 @@ class Page extends Model
         'section'  => 'required|alpha|min_length[3]',
         'active'   => 'required|numeric',
         'decs'     => 'required|alpha_numeric_space|min_length[3]',
-        // 'image' => [
-        //     'label' => 'Image File',
-        //     'rules' => 'uploaded[image]'
-        //         . '|is_image[image]'
-        //         . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
-        //         . '|max_size[image,1024]'
-        // ],
+        'image' => [
+            'label' => 'Image File',
+            'rules' => 'uploaded[image]'
+                . '|is_image[image]'
+                . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+                // . '|max_size[image,1024]'
+        ],
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

@@ -16,14 +16,8 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <?php
 
-        use Config\Services;
-
-        $validation = Services::validation();
-
-        ?>
-        <?php if (!empty($validation)) : ?>
+        <?php if (isset($validation)) : ?>
           <div class="alert alert-danger">
             <?php foreach ($validation as $field => $error) : ?>
               <p><?= $error ?></p>
@@ -45,11 +39,7 @@
               ?>
 
             </select>
-            <?php if ($validation->getError('menu')) { ?>
-              <div class='text-danger mt-1'>
-                <?= $error = $validation->getError('menu'); ?>
-              </div>
-            <?php } ?>
+
           </div>
           <div class="col-12">
             <label for="exampleFormControlInput1" class="form-label">Section</label>
@@ -58,11 +48,7 @@
               <option value="profit">profit</option>
               <option value="package">package</option>
             </select>
-            <?php if ($validation->getError('section')) { ?>
-              <div class='text-danger mt-1'>
-                <?= $error = $validation->getError('section'); ?>
-              </div>
-            <?php } ?>
+
           </div>
           <div class="col-12">
             <label for="exampleFormControlInput1" class="form-label">display</label>
@@ -71,11 +57,7 @@
               <option value="img">img</option>
               <option value="desc">desc</option>
             </select>
-            <?php if ($validation->getError('display')) { ?>
-              <div class='text-danger mt-1'>
-                <?= $error = $validation->getError('display'); ?>
-              </div>
-            <?php } ?>
+
           </div>
           <div class="col-12">
             <label for="exampleFormControlTextarea1" class="form-label">descrition</label>
@@ -83,11 +65,7 @@
               <div class="document-editor__toolbar"></div>
             </div>
             <textarea class="form-control editor" id="exampleFormControlTextarea1" rows="0" name="decs"></textarea>
-            <?php if ($validation->getError('decs')) { ?>
-              <div class='text-danger mt-1'>
-                <?= $error = $validation->getError('decs'); ?>
-              </div>
-            <?php } ?>
+
           </div>
 
           <div class="col-12">
@@ -95,20 +73,12 @@
               <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="active">
               <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
             </div>
-            <?php if ($validation->getError('active')) { ?>
-              <div class='text-danger mt-1'>
-                <?= $error = $validation->getError('active'); ?>
-              </div>
-            <?php } ?>
+
           </div>
           <div class="col-12">
             <label for="formFile" class="form-label">Default file input example</label>
             <input class="form-control" type="file" id="formFile" name="image">
-            <?php if ($validation->getError('active')) { ?>
-              <div class='text-danger mt-1'>
-                <?= $error = $validation->getError('active'); ?>
-              </div>
-            <?php } ?>
+
           </div>
           <div class="col-12">
             <button class="btn btn-primary" type="submit">Submit form</button>
