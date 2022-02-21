@@ -43,6 +43,13 @@ class Pages extends BaseController
 
         ]);
 
+        $valid = [
+            'menu'     => 'required|numeric',
+            'display'  => 'required|alpha|min_length[3]',
+            'section'  => 'required|alpha|min_length[3]',
+            'active'   => 'required|numeric',
+        ];
+
         $entity->fill($post);
         if (array_key_exists("active", $post)) {
             $entity->active =  1;
@@ -50,7 +57,10 @@ class Pages extends BaseController
             $entity->active =  0;
         }
 
-        if ($file->getName() != "") {
+        if ($post["display"] == "all") {
+            $valid['decs'] = 'required|min_length[3]';
+            $pageModel->setValidationRules($valid);
+
             if ($validated) {
                 $entity->image = $file->getRandomName();
                 $writePath = './upload/';
@@ -64,15 +74,30 @@ class Pages extends BaseController
             } else {
                 $data["validation"][] =   $this->validator->getError('image');
                 return view('pages', $data);
-                // echo "<pre>";
-                // var_dump(
+            }
+        } else if ($post["display"] == "img") {
 
-                //     $this->validator->getError('image')
-                // );
-                // die;
+            $pageModel->setValidationRules($valid);
+
+            if ($validated) {
+                $entity->image = $file->getRandomName();
+                $writePath = './upload/';
+                $file->move($writePath, $entity->image);
+                if (!$pageModel->save($entity)) {
+                    $data["validation"] =   $pageModel->errors();
+                    return view('pages', $data);
+                } else {
+                    $this->response->redirect(base_url("pages"));
+                }
+            } else {
+                $data["validation"][] =   $this->validator->getError('image');
+                return view('pages', $data);
             }
         } else {
+            $valid['decs'] = 'required|min_length[3]';
+            $pageModel->setValidationRules($valid);
 
+            $entity->image = "";
             if (!$pageModel->save($entity)) {
                 $data["validation"] =   $pageModel->errors();
                 return view('pages', $data);
@@ -80,6 +105,38 @@ class Pages extends BaseController
                 $this->response->redirect(base_url("pages"));
             }
         }
+
+        // if ($file->getName() != "") {
+        //     if ($validated) {
+        //         $entity->image = $file->getRandomName();
+        //         $writePath = './upload/';
+        //         $file->move($writePath, $entity->image);
+        //         if (!$pageModel->save($entity)) {
+        //             $data["validation"] =   $pageModel->errors();
+        //             return view('pages', $data);
+        //         } else {
+        //             $this->response->redirect(base_url("pages"));
+        //         }
+        //     } else {
+        //         $data["validation"][] =   $this->validator->getError('image');
+        //         return view('pages', $data);
+        //     }
+        // } else {
+
+        //     if (!$pageModel->save($entity)) {
+        //         $data["validation"] =   $pageModel->errors();
+        //         return view('pages', $data);
+        //     } else {
+        //         $this->response->redirect(base_url("pages"));
+        //     }
+        // }
+
+        // echo "<pre>";
+        // var_dump(
+        //     $valid
+
+        // );
+        // die;
     }
 
     public function uploadImages()
