@@ -16,15 +16,16 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <form class="row g-3 needs-validation" novalidate action="<?= base_url('pages/new') ?>" method="POST"  >
+        <form class="row g-3 needs-validation" novalidate action="<?= base_url('pages/new') ?>" method="POST" enctype="multipart/form-data">
           <?= csrf_field() ?>
           <div class="col-12">
             <label for="exampleFormControlInput1" class="form-label">Menu</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="menu">
 
               <?php
-              foreach ($menu as $me) {
-                echo '<option value="' . $me->id . '">' . $me->menu . '</option>';
+              foreach ($menu as $me => $key) {
+                $selected = $me == 0 ? "selected" : "";
+                echo '<option ' .  $selected . ' value="' . $key->id . '" >' . $key->menu . '</option>';
               }
               ?>
 
@@ -32,7 +33,7 @@
           </div>
           <div class="col-12">
             <label for="exampleFormControlInput1" class="form-label">Section</label>
-            <select class="form-select" aria-label="Default select example" name="menu">
+            <select class="form-select" aria-label="Default select example" name="section">
               <option selected value="about">about</option>
               <option value="profit">profit</option>
               <option value="package">package</option>

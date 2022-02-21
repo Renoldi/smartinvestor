@@ -18,16 +18,16 @@ class Page extends Entity
 
     function setActive(string $active)
     {
-        $this->attributes["active"] =  $active == null ? 0 : 1;
+        $this->attributes["active"] =  $active == "on" ? 1 : 0;
         return $this;
     }
 
-    function getActive()
-    {
-        echo '<pre>';
-        var_dump($this->attributes["active"]);
-        echo '</pre>';
-        die;
-        return $this->attributes["active"] == null ? 0 : 1;
-    }
+    // function getActive()
+    // {
+    //     echo '<pre>';
+    //     var_dump($this->attributes["active"]);
+    //     echo '</pre>';
+    //     die;
+    //     return $this->attributes["active"] == null ? 0 : 1;
+    // }
 }

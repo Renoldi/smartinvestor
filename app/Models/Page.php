@@ -18,7 +18,7 @@ class Page extends Model
     protected $allowedFields    = [
         'menu',
         'display',
-        'decs', 
+        'decs',
         'image',
         'active',
     ];
@@ -34,14 +34,13 @@ class Page extends Model
     protected $validationRules      = [
         'menu'     => 'required|numeric',
         'display'  => 'required|alpha|min_length[3]',
-        // 'decs'     => 'required|alpha_numeric_space|min_length[3]',
-        // 'active'   => 'required|alpha_numeric_space|min_length[3]',
-        'image' => [
-            'uploaded[image]',
-            'mime_in[image,image/jpg,image/jpeg,image/png]',
-            '|is_image[image]',
-            'max_size[image,200]',
-        ]
+        // 'image' => [
+        //     'label' => 'Image File',
+        //     'rules' => 'uploaded[image]'
+        //         . '|is_image[image]'
+        //         . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+        //         . '|max_size[image,1024]'
+        // ],
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -87,6 +86,4 @@ class Page extends Model
         return $this->where('section', $section)
             ->findAll();
     }
-
-
 }
