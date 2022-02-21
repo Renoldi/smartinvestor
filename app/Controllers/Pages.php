@@ -15,6 +15,7 @@ class Pages extends BaseController
         $getMenu = $menu->getBySubmenu(0);
         $data = [
             'menu' => $getMenu,
+
         ];
         return view('pages', $data);
     }
@@ -25,6 +26,7 @@ class Pages extends BaseController
         $getMenu = $menu->getBySubmenu(0);
         $data = [
             'menu' => $getMenu,
+
         ];
 
         $post = $this->request->getPost();
@@ -51,42 +53,28 @@ class Pages extends BaseController
             } else {
                 $data = [
                     "uploaded" => false,
-                    "error" => [
-                        "messsages" => $file
-                    ],
+                    "validation" =>  $validated,
                 ];
-                // echo "<pre>";
-                // var_dump($data);
-                // echo "</pre>";
+                return view('upload_form', $data);
             }
         } else
             $entity->image = "";
+
         $entity->fill($post);
         if (array_key_exists("active", $post)) {
-            echo "<pre>";
-            var_dump($entity);
-            echo "</pre>";
             $entity->active =  1;
         } else {
             $entity->active =  0;
         }
 
-        // echo "<pre>";
-        // var_dump($entity);
-        // echo "</pre>";
-
-        // if (!$pageModel->save($entity)) {
-        //     $data = [
-        //         $pageModel->errors(),
-        //     ];
-        //     echo "<pre>";
-        //     var_dump($data);
-        //     echo "</pre>";
-        // } else {
-        //     echo "<pre>";
-        //     var_dump("success");
-        //     echo "</pre>";
-        // }
+        if (!$pageModel->save($entity)) {
+            $data = [
+                'validation' => $pageModel->errors(),
+            ];
+            return view('upload_form', $data);
+        } else {
+            $this->response->redirect(base_url("pages"));
+        }
     }
 
     public function uploadImages()
