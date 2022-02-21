@@ -105,38 +105,6 @@ class Pages extends BaseController
                 $this->response->redirect(base_url("pages"));
             }
         }
-
-        // if ($file->getName() != "") {
-        //     if ($validated) {
-        //         $entity->image = $file->getRandomName();
-        //         $writePath = './upload/';
-        //         $file->move($writePath, $entity->image);
-        //         if (!$pageModel->save($entity)) {
-        //             $data["validation"] =   $pageModel->errors();
-        //             return view('pages', $data);
-        //         } else {
-        //             $this->response->redirect(base_url("pages"));
-        //         }
-        //     } else {
-        //         $data["validation"][] =   $this->validator->getError('image');
-        //         return view('pages', $data);
-        //     }
-        // } else {
-
-        //     if (!$pageModel->save($entity)) {
-        //         $data["validation"] =   $pageModel->errors();
-        //         return view('pages', $data);
-        //     } else {
-        //         $this->response->redirect(base_url("pages"));
-        //     }
-        // }
-
-        // echo "<pre>";
-        // var_dump(
-        //     $valid
-
-        // );
-        // die;
     }
 
     public function uploadImages()
