@@ -24,7 +24,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'cors'          => Cors::class, 
+        'cors'          => Cors::class,
     ];
 
     /**
@@ -57,7 +57,9 @@ class Filters extends BaseConfig
      * @var array
      */
     public $methods = [
-        // 'post' => ['csrf']
+        // 'post' => [
+        //     'csrf',
+        // ]
     ];
 
     /**

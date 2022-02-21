@@ -66,6 +66,7 @@
       .create(document.querySelector('.editor'), {
         ckfinder: {
           uploadUrl: "<?= base_url('pages/uploadImages') ?>",
+          
         },
         // toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo','mediaEmbed' ]
       })
