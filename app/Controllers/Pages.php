@@ -30,85 +30,84 @@ class Pages extends BaseController
 
         $post = $this->request->getPost();
 
-        echo "<pre>";
-        var_dump($post["decs"]);
 
-        // $pageModel =  new Page();
-        // $entity =  new EntitiesPage();
-        // $file = $this->request->getFile('image');
 
-        // $validated = $this->validate([
-        //     'image' => [
-        //         'label' => 'Image File',
-        //         'rules' => 'uploaded[image]'
-        //             . '|is_image[image]'
-        //             . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
-        //     ],
+        $pageModel =  new Page();
+        $entity =  new EntitiesPage();
+        $file = $this->request->getFile('image');
 
-        // ]);
+        $validated = $this->validate([
+            'image' => [
+                'label' => 'Image File',
+                'rules' => 'uploaded[image]'
+                    . '|is_image[image]'
+                    . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+            ],
 
-        // $valid = [
-        //     'menu'     => 'required|numeric',
-        //     'display'  => 'required|alpha|min_length[3]',
-        //     'section'  => 'required|alpha|min_length[3]',
-        //     'active'   => 'required|numeric',
-        // ];
+        ]);
 
-        // $entity->fill($post);
-        // if (array_key_exists("active", $post)) {
-        //     $entity->active =  1;
-        // } else {
-        //     $entity->active =  0;
-        // }
+        $valid = [
+            'menu'     => 'required|numeric',
+            'display'  => 'required|alpha|min_length[3]',
+            'section'  => 'required|alpha|min_length[3]',
+            'active'   => 'required|numeric',
+        ];
 
-        // if ($post["display"] == "all") {
-        //     $valid['decs'] = 'required|min_length[3]';
-        //     $pageModel->setValidationRules($valid);
+        $entity->fill($post);
+        if (array_key_exists("active", $post)) {
+            $entity->active =  1;
+        } else {
+            $entity->active =  0;
+        }
 
-        //     if ($validated) {
-        //         $entity->image = $file->getRandomName();
-        //         $writePath = './assets/img/';
-        //         $file->move($writePath, $entity->image);
-        //         if (!$pageModel->save($entity)) {
-        //             $data["validation"] =   $pageModel->errors();
-        //             return view('pages', $data);
-        //         } else {
-        //             $this->response->redirect(base_url("pages"));
-        //         }
-        //     } else {
-        //         $data["validation"][] =   $this->validator->getError('image');
-        //         return view('pages', $data);
-        //     }
-        // } else if ($post["display"] == "img") {
+        if ($post["display"] == "all") {
+            $valid['decs'] = 'required|min_length[3]';
+            $pageModel->setValidationRules($valid);
 
-        //     $pageModel->setValidationRules($valid);
+            if ($validated) {
+                $entity->image = $file->getRandomName();
+                $writePath = './assets/img/';
+                $file->move($writePath, $entity->image);
+                if (!$pageModel->save($entity)) {
+                    $data["validation"] =   $pageModel->errors();
+                    return view('pages', $data);
+                } else {
+                    $this->response->redirect(base_url("pages"));
+                }
+            } else {
+                $data["validation"][] =   $this->validator->getError('image');
+                return view('pages', $data);
+            }
+        } else if ($post["display"] == "img") {
 
-        //     if ($validated) {
-        //         $entity->image = $file->getRandomName();
-        //         $writePath = './assets/img/';
-        //         $file->move($writePath, $entity->image);
-        //         if (!$pageModel->save($entity)) {
-        //             $data["validation"] =   $pageModel->errors();
-        //             return view('pages', $data);
-        //         } else {
-        //             $this->response->redirect(base_url("pages"));
-        //         }
-        //     } else {
-        //         $data["validation"][] =   $this->validator->getError('image');
-        //         return view('pages', $data);
-        //     }
-        // } else {
-        //     $valid['decs'] = 'required|min_length[3]';
-        //     $pageModel->setValidationRules($valid);
+            $pageModel->setValidationRules($valid);
 
-        //     $entity->image = "";
-        //     if (!$pageModel->save($entity)) {
-        //         $data["validation"] =   $pageModel->errors();
-        //         return view('pages', $data);
-        //     } else {
-        //         $this->response->redirect(base_url("pages"));
-        //     }
-        // }
+            if ($validated) {
+                $entity->image = $file->getRandomName();
+                $writePath = './assets/img/';
+                $file->move($writePath, $entity->image);
+                if (!$pageModel->save($entity)) {
+                    $data["validation"] =   $pageModel->errors();
+                    return view('pages', $data);
+                } else {
+                    $this->response->redirect(base_url("pages"));
+                }
+            } else {
+                $data["validation"][] =   $this->validator->getError('image');
+                return view('pages', $data);
+            }
+        } else {
+            $valid['decs'] = 'required|min_length[3]';
+            $pageModel->setValidationRules($valid);
+
+            $entity->image = "";
+            if (!$pageModel->save($entity)) {
+                $data["validation"] =   $pageModel->errors();
+                return view('pages', $data);
+            } else {
+                $this->response->redirect(base_url("pages"));
+            }
+        }
     }
 
     public function uploadImages()
