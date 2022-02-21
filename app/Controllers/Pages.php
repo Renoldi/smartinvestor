@@ -63,7 +63,7 @@ class Pages extends BaseController
 
             if ($validated) {
                 $entity->image = $file->getRandomName();
-                $writePath = './upload/';
+                $writePath = './assets/img/';
                 $file->move($writePath, $entity->image);
                 if (!$pageModel->save($entity)) {
                     $data["validation"] =   $pageModel->errors();
@@ -81,7 +81,7 @@ class Pages extends BaseController
 
             if ($validated) {
                 $entity->image = $file->getRandomName();
-                $writePath = './upload/';
+                $writePath = './assets/img/';
                 $file->move($writePath, $entity->image);
                 if (!$pageModel->save($entity)) {
                     $data["validation"] =   $pageModel->errors();
