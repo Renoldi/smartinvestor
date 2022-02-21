@@ -26,7 +26,6 @@ class Pages extends BaseController
         $getMenu = $menu->getBySubmenu(0);
         $data = [
             'menu' => $getMenu,
-
         ];
 
         $post = $this->request->getPost();
@@ -51,11 +50,8 @@ class Pages extends BaseController
                 $file->move($writePath, $fileName);
                 $entity->image = base_url($writePath . $fileName);
             } else {
-                $data = [
-                    "uploaded" => false,
-                    "validation" =>  $validated,
-                ];
-                return view('upload_form', $data);
+                $data["validation"] =  $this->validator;
+                return view('pages', $data);
             }
         } else
             $entity->image = "";
@@ -68,10 +64,8 @@ class Pages extends BaseController
         }
 
         if (!$pageModel->save($entity)) {
-            $data = [
-                'validation' => $pageModel->errors(),
-            ];
-            return view('upload_form', $data);
+            $data["validation"] =   $pageModel->errors();
+            return view('pages', $data);
         } else {
             $this->response->redirect(base_url("pages"));
         }

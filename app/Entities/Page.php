@@ -16,19 +16,5 @@ class Page extends Entity
         'active' => null,
         'section' => null,
     ];
-
-    // function setActive(string $active)
-    // {
-    //     $this->attributes["active"] =  $active == "on" ? 1 : 0;
-    //     return $this;
-    // }
-
-    // function getActive()
-    // {
-    //     echo '<pre>';
-    //     var_dump($this->attributes["active"]);
-    //     echo '</pre>';
-    //     die;
-    //     return $this->attributes["active"] == null ? 0 : 1;
-    // }
+ 
 }

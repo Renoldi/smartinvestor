@@ -36,7 +36,8 @@ class Page extends Model
         'menu'     => 'required|numeric',
         'display'  => 'required|alpha|min_length[3]',
         'section'  => 'required|alpha|min_length[3]',
-        'active'   => 'numeric',
+        'active'   => 'required|numeric',
+        'decs'     => 'required|alpha_numeric_space|min_length[3]',
         // 'image' => [
         //     'label' => 'Image File',
         //     'rules' => 'uploaded[image]'

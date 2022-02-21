@@ -20,7 +20,17 @@
 
         use Config\Services;
 
-        $validation = Services::validation(); ?>
+        $validation = Services::validation();
+
+        ?>
+        <?php if (!empty($validation)) : ?>
+          <div class="alert alert-danger">
+            <?php foreach ($validation as $field => $error) : ?>
+              <p><?= $error ?></p>
+            <?php endforeach ?>
+          </div>
+        <?php endif ?>
+
         <form class="row g-3 needs-validation" novalidate action="<?= base_url('pages/new') ?>" method="POST" enctype="multipart/form-data">
           <?= csrf_field() ?>
           <div class="col-12">
@@ -94,9 +104,9 @@
           <div class="col-12">
             <label for="formFile" class="form-label">Default file input example</label>
             <input class="form-control" type="file" id="formFile" name="image">
-            <?php if ($validation->getError('image')) { ?>
+            <?php if ($validation->getError('active')) { ?>
               <div class='text-danger mt-1'>
-                <?= $error = $validation->getError('image'); ?>
+                <?= $error = $validation->getError('active'); ?>
               </div>
             <?php } ?>
           </div>
