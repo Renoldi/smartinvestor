@@ -8,6 +8,7 @@ $show = '';
 foreach ($pages as $key => $page) {
     $container = "";
     foreach ($page as $section) {
+
         if ($section->display == "all") {
             if ($x % 2) {
                 $container .= 
@@ -38,7 +39,7 @@ foreach ($pages as $key => $page) {
                 </div> 
             </div>';
         } else {
-            $container =
+            $container .=
                 '<div class="row content" > 
                     <div class="col-md-12 " data-aos="fade-up">
                     ' .  $section->decs . '

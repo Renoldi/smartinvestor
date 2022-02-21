@@ -23,7 +23,7 @@ class Fahrenheit extends BaseController
         $menu = new Menu();
         $menu = new Menu();
         $page = new Page();
-        $pages = $page->getPage('section', 4);
+        $pages = $page->getPage('section', $idMenu[0]->id);
 
         $paginate =  $faqs->where('menu', $idMenu[0]->id)->paginate(10, 'fags');
         $pager =  $faqs->where('menu', $idMenu[0]->id)->pager;

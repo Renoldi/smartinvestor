@@ -77,6 +77,9 @@ class Page extends Model
                 $result[$value->section]  = [];
             }
         }
+        // echo "<pre>";
+        // var_dump($result);
+        // die;
         return $result;
     }
 
