@@ -17,6 +17,7 @@
     <div class="row">
       <div class="col">
         <form class="row g-3 needs-validation" novalidate>
+          <?= csrf_field() ?>
           <div class="col-12">
             <label for="exampleFormControlInput1" class="form-label">Menu</label>
             <select class="form-select" aria-label="Default select example">
@@ -66,9 +67,11 @@
       .create(document.querySelector('.editor'), {
         ckfinder: {
           uploadUrl: "<?= base_url('pages/uploadImages') ?>",
-          
         },
-        // toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo','mediaEmbed' ]
+        
+        headers: {
+          '<?= csrf_header() ?>': '<?= csrf_hash() ?>',
+        }
       })
       .then(editor => {
         window.editor = editor;

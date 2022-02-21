@@ -37,7 +37,7 @@ class Filters extends BaseConfig
         'before' => [
             // 'cors'
             // 'honeypot',
-            'csrf' => ['except' => ['pages/uploadImages']],
+            'csrf' => ['except' => ['pages/uploadImages','home/uploadImages']],
             // 'invalidchars',
         ],
         'after' => [
@@ -57,9 +57,7 @@ class Filters extends BaseConfig
      * @var array
      */
     public $methods = [
-        // 'post' => [
-        //     'csrf',
-        // ]
+         
     ];
 
     /**

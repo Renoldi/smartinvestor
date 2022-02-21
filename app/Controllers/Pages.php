@@ -13,7 +13,7 @@ class Pages extends BaseController
 
     public function uploadImages()
     {
-         
+
         $validated = $this->validate([
             'upload' => [
                 'uploaded[upload]',
@@ -40,6 +40,5 @@ class Pages extends BaseController
             ];
         }
         return $this->response->setJSON($data);
-        
     }
 }
