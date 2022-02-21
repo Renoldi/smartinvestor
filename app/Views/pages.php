@@ -40,7 +40,7 @@
             </select>
           </div>
           <div class="col-12">
-            <label for="exampleFormControlInput1" class="form-label">Section</label>
+            <label for="exampleFormControlInput1" class="form-label">display</label>
             <select class="form-select" aria-label="Default select example" name="display">
               <option selected value="all">all</option>
               <option value="img">img</option>

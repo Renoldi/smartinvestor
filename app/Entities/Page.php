@@ -14,13 +14,14 @@ class Page extends Entity
         'decs' => null,
         'image' => null,
         'active' => null,
+        'section' => null,
     ];
 
-    function setActive(string $active)
-    {
-        $this->attributes["active"] =  $active == "on" ? 1 : 0;
-        return $this;
-    }
+    // function setActive(string $active)
+    // {
+    //     $this->attributes["active"] =  $active == "on" ? 1 : 0;
+    //     return $this;
+    // }
 
     // function getActive()
     // {

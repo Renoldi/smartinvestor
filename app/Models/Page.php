@@ -18,6 +18,7 @@ class Page extends Model
     protected $allowedFields    = [
         'menu',
         'display',
+        'section',
         'decs',
         'image',
         'active',
@@ -34,6 +35,8 @@ class Page extends Model
     protected $validationRules      = [
         'menu'     => 'required|numeric',
         'display'  => 'required|alpha|min_length[3]',
+        'section'  => 'required|alpha|min_length[3]',
+        'active'   => 'numeric',
         // 'image' => [
         //     'label' => 'Image File',
         //     'rules' => 'uploaded[image]'

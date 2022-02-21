@@ -55,31 +55,38 @@ class Pages extends BaseController
                         "messsages" => $file
                     ],
                 ];
-                echo "<pre>";
-                var_dump($data);
-                echo "</pre>";
+                // echo "<pre>";
+                // var_dump($data);
+                // echo "</pre>";
             }
         } else
             $entity->image = "";
         $entity->fill($post);
         if (array_key_exists("active", $post)) {
+            echo "<pre>";
+            var_dump($entity);
+            echo "</pre>";
             $entity->active =  1;
         } else {
             $entity->active =  0;
         }
 
-        if (!$pageModel->save($entity)) {
-            $data = [
-                $pageModel->errors(),
-            ];
-            echo "<pre>";
-            var_dump($data);
-            echo "</pre>";
-        } else {
-            echo "<pre>";
-            var_dump("success");
-            echo "</pre>";
-        }
+        // echo "<pre>";
+        // var_dump($entity);
+        // echo "</pre>";
+
+        // if (!$pageModel->save($entity)) {
+        //     $data = [
+        //         $pageModel->errors(),
+        //     ];
+        //     echo "<pre>";
+        //     var_dump($data);
+        //     echo "</pre>";
+        // } else {
+        //     echo "<pre>";
+        //     var_dump("success");
+        //     echo "</pre>";
+        // }
     }
 
     public function uploadImages()
