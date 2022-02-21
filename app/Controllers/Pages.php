@@ -11,7 +11,12 @@ class Pages extends BaseController
 {
     public function index()
     {
-        return view('pages');
+        $menu = new Menu();
+        $getMenu = $menu->getBySubmenu(0);
+        $data = [
+            'menu' => $getMenu,
+        ];
+        return view('pages', $data);
     }
 
     public function new()
@@ -23,21 +28,23 @@ class Pages extends BaseController
         ];
 
         $post = $this->request->getPost();
-        if ($post) {
-            $pageModel =  new Page();
-            $entity =  new EntitiesPage();
-            $entity->fill($post);
-            // if (!$userModel->save($entity)) {
-            //     $data = [
-            //         $userModel->errors(),
-            //     ];
-            //     return $this->respondCreated($data);
-            //     // return view('template', $data);
-            // } else {
-            // return $this->respondCreated($entity);
-            // }
-        } else
-            return view('pages', $data);
+        $pageModel =  new Page();
+        $entity =  new EntitiesPage();
+        $entity->fill($post);
+        // if (!$pageModel->save($entity)) {
+        //     $data = [
+        //         $pageModel->errors(),
+        //     ];
+        //     // view('pages', $data);
+        // echo "<pre>";
+        // var_dump($entity);
+        // echo "</pre>";
+        // die;
+        // } else {
+        //     // return view('template', $data);
+        //     var_dump("success");
+        // }
+
     }
 
     public function uploadImages()

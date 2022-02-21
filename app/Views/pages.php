@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <form class="row g-3 needs-validation" novalidate method="POST" enctype="multipart/form-data">
+        <form class="row g-3 needs-validation" novalidate action="<?= base_url('pages/new') ?>" method="POST"  >
           <?= csrf_field() ?>
           <div class="col-12">
             <label for="exampleFormControlInput1" class="form-label">Menu</label>
@@ -32,7 +32,7 @@
           </div>
           <div class="col-12">
             <label for="exampleFormControlInput1" class="form-label">Section</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="menu">
               <option selected value="about">about</option>
               <option value="profit">profit</option>
               <option value="package">package</option>
@@ -40,7 +40,7 @@
           </div>
           <div class="col-12">
             <label for="exampleFormControlInput1" class="form-label">Section</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="display">
               <option selected value="all">all</option>
               <option value="img">img</option>
               <option value="desc">desc</option>
@@ -51,12 +51,12 @@
             <div class="row">
               <div class="document-editor__toolbar"></div>
             </div>
-            <textarea class="form-control editor" id="exampleFormControlTextarea1" rows="0"></textarea>
+            <textarea class="form-control editor" id="exampleFormControlTextarea1" rows="0" name="decs"></textarea>
           </div>
 
           <div class="col-12">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="active">
               <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
             </div>
           </div>

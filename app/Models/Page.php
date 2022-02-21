@@ -18,7 +18,7 @@ class Page extends Model
     protected $allowedFields    = [
         'menu',
         'display',
-        'decs',
+        'decs', 
         'image',
         'active',
     ];
