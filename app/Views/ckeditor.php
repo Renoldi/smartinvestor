@@ -9,21 +9,28 @@
 
 <body>
     <h1>Balloon editor</h1>
-    <div class="row">
-        <div class="document-editor__toolbar"></div>
-    </div>
-    <div class="row row-editor">
-
-        <div class="editor">
-
+    <form>
+        <?= csrf_field() ?>
+        <div class="row">
+            <div class="document-editor__toolbar"></div>
         </div>
-    </div>
+        <div class="row row-editor">
+
+            <div class="editor">
+
+            </div>
+        </div>
+    </form>
     <script>
         ClassicEditor
             .create(document.querySelector('.editor'), {
                 ckfinder: {
                     uploadUrl: "<?= base_url('home/uploadImages') ?>",
                 },
+                headers: {
+                    'X-CSRF-TOKEN': "<?= csrf_hash() ?>",
+                    // Authorization: 'Bearer <JSON Web Token>'
+                }
             })
             .then(editor => {
                 window.editor = editor;
