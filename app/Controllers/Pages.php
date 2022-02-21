@@ -42,6 +42,7 @@ class Pages extends BaseController
                 'rules' => 'uploaded[image]'
                     . '|is_image[image]'
                     . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+                    . '|max_size[image,1024]'
             ],
 
         ]);
