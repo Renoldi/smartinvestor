@@ -42,11 +42,7 @@ class Pages extends BaseController
             ],
 
         ]);
-        if ($validated) {
-            $fileName = $file->getRandomName();
-            $writePath = './upload/';
-            $file->move($writePath, $fileName);
-        }
+        
 
         $entity->fill($post);
         if (array_key_exists("active", $post)) {
@@ -59,7 +55,7 @@ class Pages extends BaseController
             if ($validated) {
                 $entity->image = $file->getRandomName();
                 $writePath = './upload/';
-                $file->move($writePath, $fileName);
+                $file->move($writePath, $entity->image);
                 if (!$pageModel->save($entity)) {
                     $data["validation"] =   $pageModel->errors();
                     return view('pages', $data);
