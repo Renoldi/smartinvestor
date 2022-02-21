@@ -62,8 +62,14 @@ class Pages extends BaseController
                     $this->response->redirect(base_url("pages"));
                 }
             } else {
-                $data["validation"] =   $this->validator;
+                $data["validation"][] =   $this->validator->getError('image');
                 return view('pages', $data);
+                // echo "<pre>";
+                // var_dump(
+
+                //     $this->validator->getError('image')
+                // );
+                // die;
             }
         } else {
 
