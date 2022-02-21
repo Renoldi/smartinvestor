@@ -42,7 +42,6 @@ class Pages extends BaseController
             ],
 
         ]);
-        
 
         $entity->fill($post);
         if (array_key_exists("active", $post)) {
