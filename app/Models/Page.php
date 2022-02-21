@@ -85,12 +85,12 @@ class Page extends Model
 
     public function getDistinct($page, $where)
     {
-        return $this->distinct()->select($page)->where('menu', $where)->findAll();
+        return $this->distinct()->select($page)->where(['menu' => $where, 'active' => 1])->findAll();
     }
 
     public function getBySubmenu($section)
     {
-        return $this->where('section', $section)
+        return $this->where(['section' => $section, 'active' => 1])
             ->findAll();
     }
 }
