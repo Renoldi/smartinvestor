@@ -47,7 +47,7 @@ class Pages extends BaseController
                 $fileName = $file->getRandomName();
                 $writePath = './upload/';
                 $file->move($writePath, $fileName);
-                $entity->image = $fileName;
+                $entity->image = base_url($writePath . $fileName);
             } else {
                 $data = [
                     "uploaded" => false,
