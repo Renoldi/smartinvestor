@@ -16,15 +16,18 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <form class="row g-3 needs-validation" novalidate>
+        <form class="row g-3 needs-validation" novalidate method="POST" enctype="multipart/form-data">
           <?= csrf_field() ?>
           <div class="col-12">
             <label for="exampleFormControlInput1" class="form-label">Menu</label>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+
+              <?php
+              foreach ($menu as $me) {
+                echo '<option value="' . $me->id . '">' . $me->menu . '</option>';
+              }
+              ?>
+
             </select>
           </div>
           <div class="col-12">
@@ -50,9 +53,16 @@
             </div>
             <textarea class="form-control editor" id="exampleFormControlTextarea1" rows="0"></textarea>
           </div>
+
+          <div class="col-12">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
+            </div>
+          </div>
           <div class="col-12">
             <label for="formFile" class="form-label">Default file input example</label>
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" id="formFile" name="image">
           </div>
           <div class="col-12">
             <button class="btn btn-primary" type="submit">Submit form</button>
@@ -68,7 +78,7 @@
         ckfinder: {
           uploadUrl: "<?= base_url('pages/uploadImages') ?>",
         },
-        
+
         headers: {
           '<?= csrf_header() ?>': '<?= csrf_hash() ?>',
         }

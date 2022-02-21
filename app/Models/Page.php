@@ -24,14 +24,25 @@ class Page extends Model
     ];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'menu'     => 'required|numeric',
+        'display'  => 'required|alpha|min_length[3]',
+        // 'decs'     => 'required|alpha_numeric_space|min_length[3]',
+        // 'active'   => 'required|alpha_numeric_space|min_length[3]',
+        'image' => [
+            'uploaded[image]',
+            'mime_in[image,image/jpg,image/jpeg,image/png]',
+            '|is_image[image]',
+            'max_size[image,200]',
+        ]
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
@@ -57,10 +68,10 @@ class Page extends Model
             $subs = $this->getBySubmenu($value->section);
             if (count($subs) > 0) {
                 foreach ($subs as $sub => $key) {
-                    $result[ $value->section][] = $key;
+                    $result[$value->section][] = $key;
                 }
             } else {
-                $result[ $value->section]  = [];
+                $result[$value->section]  = [];
             }
         }
         return $result;
@@ -76,4 +87,6 @@ class Page extends Model
         return $this->where('section', $section)
             ->findAll();
     }
+
+
 }
